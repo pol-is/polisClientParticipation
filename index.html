@@ -295,6 +295,7 @@ window.initIntercom = function(){
   </head>
   <body class="clickDeselectsHull" style="margin:0; background-color: white;">
 
+
 <!-- <div id="fb-root"></div> -->
 <script>
 // (function(d, s, id) {
@@ -328,8 +329,13 @@ window.initIntercom = function(){
 </script>
 
 <script src="<%= basepath %>/js/<%= d3Filename %>"></script>
+<script> d3_old = d3; delete d3;</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
 <script src="<%= basepath %>/js/polis.js"></script>
 
+<script src="/pub_vis2/vis_bundle.js"></script>
 
 <p id="mainSpinner" class="HeadingC" style="text-align:center; margin: 40px">Loading...</p>
 <p id="badDomainMessage" class="HeadingC displaynone" style="text-align:center; margin: 40px;">This coversation can not be viewed from this domain.</p>
@@ -340,7 +346,6 @@ window.initIntercom = function(){
   }
 </script>
 <script>window.version = "<%= versionString %>";</script>
-
 
 
 </body>
