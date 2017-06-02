@@ -25,6 +25,9 @@ class Graph extends React.Component {
       selectedTidCuration: null,
       browserDimensions: window.innerWidth,
       visualizationParentWidth: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10),
+      sideWithPadding: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2,
+      svgHeightWithPadding: (parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2) / 1.5,
+      svgHeightWithoutPadding: ((parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2) / 1.5) - globals.padding * 2,
     };
   }
 
@@ -34,6 +37,9 @@ class Graph extends React.Component {
       this.setState({
         browserDimensions: window.innerWidth,
         visualizationParentWidth: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10),
+        sideWithPadding: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2,
+        svgHeightWithPadding: (parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2) / 1.5,
+        svgHeightWithoutPadding: ((parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10) + globals.padding * 2) / 1.5) - globals.padding * 2
       })
     })
 
@@ -64,7 +70,14 @@ class Graph extends React.Component {
       groupCentroids,
       groupCornerAssignments,
       ptptoisProjected,
-    } = graphUtil(nextProps.comments, nextProps.math, nextProps.badTids, nextProps.ptptois, this.state.visualizationParentWidth);
+    } = graphUtil(
+      nextProps.comments,
+      nextProps.math,
+      nextProps.badTids,
+      nextProps.ptptois,
+      this.state.visualizationParentWidth,
+      this.state.svgHeightWithoutPadding,
+    );
 
     commentsPoints = commentsPoints.filter((c) => {
       return !_.isUndefined(tidsToShowSet[c.tid]);
@@ -177,7 +190,7 @@ class Graph extends React.Component {
 
     return (
       <div>
-        <svg width={this.state.visualizationParentWidth} height={this.state.visualizationParentWidth} >
+        <svg width={this.state.visualizationParentWidth} height={this.state.svgHeightWithoutPadding} >
           <filter id="grayscale">
              <feColorMatrix type="saturate" values="0"/>
           </filter>
@@ -211,7 +224,7 @@ class Graph extends React.Component {
               repfulDisageeTidsByGroup={this.props.repfulDisageeTidsByGroup}
               formatTid={this.props.formatTid}/>*/}
             <BarChartsForGroupVotes
-              side={this.state.visualizationParentWidth}
+              side={this.state.sideWithPadding}
               hullElems={this.hullElems}
               selectedComment={this.state.selectedComment}
               allComments={this.props.comments}
