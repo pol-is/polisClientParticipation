@@ -123,7 +123,8 @@ const doMapCornerPointer = (corner, xx, yy) => {
   }
 }
 
-const graphUtil = (comments, math, badTids, ptptois) => {
+const graphUtil = (comments, math, badTids, ptptois, side) => {
+
     const allXs = [];
     const allYs = [];
 
@@ -195,8 +196,9 @@ const graphUtil = (comments, math, badTids, ptptois) => {
     let maxClusterX = _.max(allXs);
     let minClusterY = _.min(allYs);
     let maxClusterY = _.max(allYs);
-    const xx = d3.scaleLinear().domain([minClusterX, maxClusterX]).range([border, globals.side - border]);
-    const yy = d3.scaleLinear().domain([minClusterY, maxClusterY]).range([border, globals.svgHeightWithoutPadding - border]);
+    const xx = d3.scaleLinear().domain([minClusterX, maxClusterX]).range([border, side - border]);
+    // const yy = d3.scaleLinear().domain([minClusterY, maxClusterY]).range([border, globals.svgHeightWithoutPadding - border]);
+    const yy = d3.scaleLinear().domain([minClusterY, maxClusterY]).range([border, side - border]);
 
     const xCenter = xx(0);
     const yCenter = yy(0);
@@ -214,8 +216,10 @@ const graphUtil = (comments, math, badTids, ptptois) => {
     // xGreatestMapped = xCenter + xScale * maxCommentX
     // globals.side - border = xCenter + xScale * maxCommentX
     // globals.side - border - xCenter = xScale * maxCommentX
-    var xScaleCandidateForRightSide = (globals.side - border - xCenter) / maxCommentX;
-    var yScaleCandidateForBottomSide = (globals.svgHeightWithoutPadding - border - yCenter) / maxCommentY;
+    var xScaleCandidateForRightSide = (side - border - xCenter) / maxCommentX;
+    // var yScaleCandidateForBottomSide = (globals.svgHeightWithoutPadding - border - yCenter) / maxCommentY;
+    var yScaleCandidateForBottomSide = (side - border - yCenter) / maxCommentY;
+
 
     // xLowestMapped = xCenter + xScale * minCommentX
     // border = xCenter + xScale * minCommentX

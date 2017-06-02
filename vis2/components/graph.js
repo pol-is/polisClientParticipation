@@ -23,14 +23,18 @@ class Graph extends React.Component {
     this.state = {
       selectedComment: null,
       selectedTidCuration: null,
-      browserDimensions: window.innerWidth
+      browserDimensions: window.innerWidth,
+      visualizationParentWidth: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10),
     };
   }
 
   componentWillMount() {
 
     window.addEventListener("resize", () => {
-      this.setState({browserDimensions: window.innerWidth})
+      this.setState({
+        browserDimensions: window.innerWidth,
+        visualizationParentWidth: parseInt(getComputedStyle(document.getElementById('visualization_parent_div')).width, 10),
+      })
     })
 
     // document.getElementById("helpTextGroups").style.display = "none";
@@ -60,7 +64,7 @@ class Graph extends React.Component {
       groupCentroids,
       groupCornerAssignments,
       ptptoisProjected,
-    } = graphUtil(nextProps.comments, nextProps.math, nextProps.badTids, nextProps.ptptois);
+    } = graphUtil(nextProps.comments, nextProps.math, nextProps.badTids, nextProps.ptptois, this.state.visualizationParentWidth);
 
     commentsPoints = commentsPoints.filter((c) => {
       return !_.isUndefined(tidsToShowSet[c.tid]);
@@ -138,44 +142,48 @@ class Graph extends React.Component {
 
   render() {
 
-    let ww = $(document.body).width();
-    let w = globals.sideWithPadding;
-    let svgScale = 1;
-    /*
-      if the width of the body is less than the width of the svg...
-      scale it down
-      if the body is at 500 and the svg is 700, then it's a 5 to 7 ratio
-      scaling factor on the svg
-    */
-    if (ww < w) {
-      svgScale = ww / w;
-    }
-    let svgNegativeMargin = globals.sideWithPadding * (svgScale - 1);
+    // let ww = $(document.body).width();
+    // let w = globals.sideWithPadding;
+    // let svgScale = 1;
+    // /*
+    //   if the width of the body is less than the width of the svg...
+    //   scale it down
+    //   if the body is at 500 and the svg is 700, then it's a 5 to 7 ratio
+    //   scaling factor on the svg
+    //
+    //   style={{
+    //     transform: "scale("+svgScale+")",
+    //     transformOrigin: "0% 0%",
+    //     marginBottom: svgNegativeMargin
+    //   }}
+    // */
+    // if (ww < w) {
+    //   svgScale = ww / w;
+    // }
+    // let svgNegativeMargin = globals.sideWithPadding * (svgScale - 1);
+    // {/* Comment https://bl.ocks.org/mbostock/7555321 */}
+    // <g transform={`translate(${globals.side / 2}, ${15})`}>
+    //   <text
+    //     style={{
+    //       fontFamily: "Georgia",
+    //       fontSize: 14,
+    //       fontStyle: "italic"
+    //     }}
+    //     textAnchor="middle">
+    //
+    //   </text>
+    // </g>
+
 
     return (
       <div>
-        <svg width={globals.sideWithPadding} height={globals.svgHeightWithPadding} style={{
-          transform: "scale("+svgScale+")",
-          transformOrigin: "0% 0%",
-          marginBottom: svgNegativeMargin}
-        }>
+        <svg width={this.state.visualizationParentWidth} height={this.state.visualizationParentWidth} >
           <filter id="grayscale">
              <feColorMatrix type="saturate" values="0"/>
           </filter>
           <g transform={`translate(${globals.padding}, ${globals.padding})`}>
-            {/* Comment https://bl.ocks.org/mbostock/7555321 */}
-            <g transform={`translate(${globals.side / 2}, ${15})`}>
-              <text
-                style={{
-                  fontFamily: "Georgia",
-                  fontSize: 14,
-                  fontStyle: "italic"
-                }}
-                textAnchor="middle">
-
-              </text>
-            </g>
             <Axes
+              side={this.state.visualizationParentWidth}
               xCenter={this.state.xCenter}
               yCenter={this.state.yCenter}
               report={this.props.report}/>
@@ -203,6 +211,7 @@ class Graph extends React.Component {
               repfulDisageeTidsByGroup={this.props.repfulDisageeTidsByGroup}
               formatTid={this.props.formatTid}/>*/}
             <BarChartsForGroupVotes
+              side={this.state.visualizationParentWidth}
               hullElems={this.hullElems}
               selectedComment={this.state.selectedComment}
               allComments={this.props.comments}

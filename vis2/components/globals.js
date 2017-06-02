@@ -32,11 +32,11 @@ export const enableMatrix = false;
 
 export const ptptoiScaleFactor = 0.6;
 
-export const side = 730;
+// export const side = 730;
 export const padding = 10;
-export const sideWithPadding = side + padding * 2;
-export const svgHeightWithPadding = sideWithPadding / 1.5;
-export const svgHeightWithoutPadding = svgHeightWithPadding - padding * 2;
+// export const sideWithPadding = side + padding * 2;
+// export const svgHeightWithPadding = sideWithPadding / 1.5;
+// export const svgHeightWithoutPadding = svgHeightWithPadding - padding * 2;
 
 export const labelPadding = 40;
 export const shouldColorizeTidsByRepfulness = true;
