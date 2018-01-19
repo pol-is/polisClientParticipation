@@ -12,6 +12,18 @@ var Strings = require("../strings");
 
 var iOS = Utils.isIos();
 
+
+function getOfficialTranslations(translations) {
+  return (translations||[]).filter(function(t) {
+    return t.src > 0;
+  });
+}
+function getMatchingOfficialTranslation(translations) {
+  return getOfficialTranslations(translations).filter(function(t) {
+    return Utils.matchesUiLang(t.lang);
+  })[0];
+}
+
 module.exports = Handlebones.ModelView.extend({
   name: "vote-view",
   template: template,
@@ -97,12 +109,30 @@ module.exports = Handlebones.ModelView.extend({
     if (ctx.showTranslation && ctx.translations && ctx.translations.length) {
       ctx.translationTxt = ctx.translations[0].txt;
       ctx.translationLang = ctx.translations[0].lang;
+      ctx.translationSrc = ctx.translations[0].src;
     }
     if (!ctx.showTranslation && ctx.lang && !Utils.matchesUiLang(ctx.lang) && ctx.translations && ctx.translations.length) {
       ctx.showShowTranslationButton = true;
     }
     if (ctx.showTranslation && ctx.translationTxt && ctx.lang && !Utils.matchesUiLang(ctx.lang) && ctx.translations && ctx.translations.length) {
       ctx.showHideTranslationButton = true;
+    }
+
+    if (ctx.showOfficialTranslation) {
+      // && ctx.translationSrc !== -1) {
+      var t = getMatchingOfficialTranslation(ctx.translations);
+      ctx.txt = t.txt;
+      ctx.lang = t.lang;
+    }
+
+    // if comment has correct language don't show translation or buttons
+    if (ctx.showTranslation && ctx.lang && Utils.matchesUiLang(ctx.lang)) {
+      ctx.showTranslation = false;
+      delete ctx.translationTxt;
+      delete ctx.translationLang;
+      delete ctx.translationSrc;
+      ctx.showShowTranslationButton = false;
+      ctx.showHideTranslationButton = false;
     }
 
     // if (ctx.userHasVotedThisSession) {
@@ -255,6 +285,11 @@ module.exports = Handlebones.ModelView.extend({
         empty: false,
         shouldMod: false,
       };
+
+      var t = getMatchingOfficialTranslation(model.translations);
+      if (t) {
+        savedState.showOfficialTranslation = true;
+      }
 
       that.model.clear({
         silent: true
