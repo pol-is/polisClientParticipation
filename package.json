@@ -30,7 +30,7 @@
     "simple-lru-cache": "0.0.1",
     "underscore": "~1.5.2",
     "victory": "^0.20.0",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",
