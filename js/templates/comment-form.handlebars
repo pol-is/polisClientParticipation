@@ -149,6 +149,9 @@
         margin-top: 10px;
         ">
       <div class="protip"><p><i class="fa fa-microphone"></i>&nbsp; {{s.connectToPostPrompt}}</p></div>
+      {{#unless hasEMail}}
+        <a href="#" id="emailButtonCommentForm" style="padding-top: 0px;">Login with E-Mail</a>
+      {{/unless}}
       {{#unless hasFacebook}}
         <button id="facebookButtonCommentForm" class="facebookButton" style="padding-top: 0px;">
           <i class="svgIcon" style="
@@ -161,18 +164,18 @@
           ">{{> iconFaFacebookSquare25}}</i>
           {{s.connectFacebook}}</button>
       {{/unless}}
-      {{#unless hasTwitter}}
-        <button id="twitterButtonCommentForm" class="twitterButton" style="padding-top: 0px;">
-        <i class="svgIcon" style="
-          display: inline-block;
-          position: relative;
-          margin-right: 2px;
-          top: 8px;
-          width: 25px;
-          fill: white;
-        ">{{> iconFaTwitter25}}</i>
-          {{s.connectTwitter}}</button>
-      {{/unless}}
+      <!--{{#unless hasTwitter}}-->
+        <!--<button id="twitterButtonCommentForm" class="twitterButton" style="padding-top: 0px;">-->
+        <!--<i class="svgIcon" style="-->
+          <!--display: inline-block;-->
+          <!--position: relative;-->
+          <!--margin-right: 2px;-->
+          <!--top: 8px;-->
+          <!--width: 25px;-->
+          <!--fill: white;-->
+        <!--">{{> iconFaTwitter25}}</i>-->
+          <!--{{s.connectTwitter}}</button>-->
+      <!--{{/unless}}-->
     </div>
 
     {{!-- ================ LOWER CONTAINER ================ --}}

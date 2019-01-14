@@ -40,6 +40,7 @@ module.exports = Handlebones.ModelView.extend({
     ctx = _.extend(ctx, this, this.model&&this.model.attributes);
     ctx.is_active = this.parent.model.get("is_active");
     ctx.shouldAutofocusOnTextarea = this.shouldAutofocusOnTextarea || Utils.shouldFocusOnTextareaWhenWritePaneShown();
+    ctx.hasEMail = !(userObject.email == null);
     ctx.hasTwitter = userObject.hasTwitter;
     ctx.hasFacebook = userObject.hasFacebook;
     ctx.s = Strings;
@@ -184,6 +185,7 @@ module.exports = Handlebones.ModelView.extend({
     "change #comment_form_textarea": "textChange",
     "keyup #comment_form_textarea": "textChange",
     "paste #comment_form_textarea": "textChange",
+    "click #emailButtonCommentForm" : "emailClicked",
     "click #facebookButtonCommentForm" : "facebookClicked",
     "click #twitterButtonCommentForm" : "twitterClicked",
     "click #comment_button": "onSubmitClicked",
