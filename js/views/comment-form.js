@@ -1,5 +1,8 @@
 // Copyright (C) 2012-present, Polis Technology Inc. This program is free software: you can redistribute it and/or  modify it under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+// FIXME: Should read SERVICE_URL from polis.config, don't know how to do it in webpack
+var SERVICE_URL = 'https://ait-polis.pdis.nat.gov.tw';
+
 var autosize = require("autosize");
 var constants = require("../util/constants");
 var CurrentUserModel = require("../stores/currentUser");
@@ -15,6 +18,15 @@ var Strings = require("../strings");
 var Utils = require("../util/utils");
 
 var CHARACTER_LIMIT = constants.CHARACTER_LIMIT;
+
+window.onload = function() {
+  var comment = sessionStorage.getItem("comment");
+  console.log('comment='+comment);
+  if (comment) {
+    $('#comment_form_textarea').val(comment);
+    sessionStorage.removeItem("comment");
+  }
+};
 
 // var CommentsByMeView = Handlebones.CollectionView.extend({
 //   modelView: CommentView
@@ -40,7 +52,7 @@ module.exports = Handlebones.ModelView.extend({
     ctx = _.extend(ctx, this, this.model&&this.model.attributes);
     ctx.is_active = this.parent.model.get("is_active");
     ctx.shouldAutofocusOnTextarea = this.shouldAutofocusOnTextarea || Utils.shouldFocusOnTextareaWhenWritePaneShown();
-    ctx.hasEMail = !(userObject.email == null);
+    ctx.hasEMail = userObject.email !== null;
     ctx.hasTwitter = userObject.hasTwitter;
     ctx.hasFacebook = userObject.hasFacebook;
     ctx.s = Strings;
@@ -182,7 +194,7 @@ module.exports = Handlebones.ModelView.extend({
         this.hideFormControls();
       }
     },
-    "change #comment_form_textarea": "textChange",
+    "change #comment_formemailButtonCommentForm_textarea": "textChange",
     "keyup #comment_form_textarea": "textChange",
     "paste #comment_form_textarea": "textChange",
     "click #emailButtonCommentForm" : "emailClicked",
@@ -247,6 +259,11 @@ module.exports = Handlebones.ModelView.extend({
     this.reloadPagePreservingCommentText();
     // $("#socialButtonsCommentForm").hide();
     // $("#comment_form_controls").show();
+  },
+  emailClicked: function(e) {
+    e.preventDefault();
+    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=400,width=400');
+    sessionStorage.setItem("comment", $('#comment_form_textarea').val());
   },
   facebookClicked: function(e) {
     e.preventDefault();

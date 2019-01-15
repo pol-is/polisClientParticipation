@@ -3,7 +3,7 @@
   var firstRun = !window.polis._hasRun;
   polis._hasRun = 1;
   var iframes = [];
-  var polisUrl = "https://pol.is";
+  var polisUrl = "https://ait-polis.pdis.nat.gov.tw";
   var maxHeightsSeen = {};
 
   polis.on = polis.on || {};

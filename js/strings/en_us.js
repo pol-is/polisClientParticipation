@@ -70,6 +70,7 @@ s.commentIsEmpty = "Statement is empty";
 s.commentIsTooLong = "Statement is too long";
 s.hereIsNextStatement = "Vote success. Navigate up to see the next statement.";
 
+s.emailLogin = "Login with E-Mail";
 s.connectFacebook = "Connect Facebook";
 s.connectTwitter = "Connect Twitter";
 s.connectToPostPrompt = "Connect an identity to submit a statement. We will not post to your timeline.";

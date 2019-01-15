@@ -13,14 +13,6 @@ var Strings = require("../strings");
 var iOS = Utils.isIos();
 
 
-window.onload = function() {
-  var comment = sessionStorage.getItem("comment");
-  if (comment) {
-    $('#comment_form_textarea').val(comment);
-    sessionStorage.removeItem("comment");
-  }
-}
-
 function getOfficialTranslations(translations) {
   return (translations||[]).filter(function(t) {
     return t.src > 0;
@@ -189,16 +181,8 @@ module.exports = Handlebones.ModelView.extend({
   },
 
   loginCallback: function(comment) {
-    sessionStorage.setItem('comment', comment);
-    document.location.reload();
-  },
-  
-  emailClicked: function(e) {
-    e.preventDefault();
-    var win = window.open('https://ait-polis.pdis.nat.gov.tw/signin');
-    win.onload = function () {
-      win.loginCallback = loginCallback;
-    };
+    // sessionStorage.setItem('comment', comment);
+    // document.location.reload();
   },
   
   facebookClicked: function(e) {

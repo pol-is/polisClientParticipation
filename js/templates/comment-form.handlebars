@@ -150,7 +150,8 @@
         ">
       <div class="protip"><p><i class="fa fa-microphone"></i>&nbsp; {{s.connectToPostPrompt}}</p></div>
       {{#unless hasEMail}}
-        <a href="#" id="emailButtonCommentForm" style="padding-top: 0px;">Login with E-Mail</a>
+        <button id="emailButtonCommentForm" class="emailButton" style="padding-top: 0px;">
+          {{s.emailLogin}}</button>
       {{/unless}}
       {{#unless hasFacebook}}
         <button id="facebookButtonCommentForm" class="facebookButton" style="padding-top: 0px;">
