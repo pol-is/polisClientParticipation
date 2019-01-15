@@ -21,7 +21,6 @@ var CHARACTER_LIMIT = constants.CHARACTER_LIMIT;
 
 window.onload = function() {
   var comment = sessionStorage.getItem("comment");
-  console.log('comment='+comment);
   if (comment) {
     $('#comment_form_textarea').val(comment);
     sessionStorage.removeItem("comment");
@@ -262,8 +261,11 @@ module.exports = Handlebones.ModelView.extend({
   },
   emailClicked: function(e) {
     e.preventDefault();
-    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=400,width=400');
     sessionStorage.setItem("comment", $('#comment_form_textarea').val());
+    window.signinCallback = function() {
+      window.location.reload();
+    };
+    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=400,width=400');
   },
   facebookClicked: function(e) {
     e.preventDefault();
