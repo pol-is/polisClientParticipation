@@ -51,4 +51,8 @@ s.emailLogin = "以電郵帳號登入";
 s.connectFbButton = "與 Facebook 連結";
 s.connectTwButton = "與 Twitter 連結";
 
+s.showTranslationButton = "啟用外部翻譯";
+s.hideTranslationButton = "停用外部翻譯";
+s.thirdPartyTranslationDisclaimer = "翻譯服務由第三方提供";
+
 module.exports = s;
