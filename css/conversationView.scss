@@ -666,6 +666,18 @@ svg {
     color: #3b5998;
   }
 
+.emailButton {
+  cursor: pointer;
+  border: 0px;
+  color: white;
+  background: darkred;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  padding: 12px 12px 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
 .facebookButton, .twitterButton {
   cursor: pointer;
   border: 0px;
