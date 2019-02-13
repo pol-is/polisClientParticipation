@@ -243,7 +243,7 @@ module.exports = Handlebones.ModelView.extend({
       }
     }
     var xid = Utils.getXid();
-    var hasSocial = window.userObject.hasFacebook || window.userObject.hasTwitter || !_.isUndefined(xid);
+    var hasSocial = window.userObject.hasFacebook || window.userObject.hasTwitter || window.userObject.emailVerified || !_.isUndefined(xid);
     var needsSocial = preload.firstConv.auth_needed_to_write;
     M.add(M.COMMENT_SUBMIT_CLICK);
     if (hasSocial || !needsSocial) {
