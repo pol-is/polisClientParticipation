@@ -39,6 +39,7 @@ module.exports = Handlebones.ModelView.extend({
     "click #importantToggle": "importantToggle",
     "click #modSubmit" : "participantModerated",
 
+    "click #emailButtonCommentForm" : "emailClicked",
     "click #facebookButtonVoteView" : "facebookClicked",
     "click #twitterButtonVoteView" : "twitterClicked",
     "click #showTranslationButtonVoteView" : "showTranslationClicked",
@@ -184,7 +185,15 @@ module.exports = Handlebones.ModelView.extend({
     // sessionStorage.setItem('comment', comment);
     // document.location.reload();
   },
-  
+
+  emailClicked: function(e) {
+    e.preventDefault();
+    window.signinCallback = function() {
+      window.location.reload();
+    };
+    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=500,width=400');
+  },
+
   facebookClicked: function(e) {
     e.preventDefault();
     var that = this;

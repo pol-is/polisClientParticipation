@@ -265,7 +265,7 @@ module.exports = Handlebones.ModelView.extend({
     window.signinCallback = function() {
       window.location.reload();
     };
-    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=400,width=400');
+    window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=500,width=400');
   },
   facebookClicked: function(e) {
     e.preventDefault();
