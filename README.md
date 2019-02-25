@@ -15,7 +15,7 @@ bower install
 ```
 
 There is a `polis.config.template.js` file which will have to be copied over to `polis.config.js`, and edited as appropriate. 
-There is also a `webpack.config.js` file which may need to be renamed and replaced by with `webpack.config.dev.js` or 
+There is also a `webpack.config.js` file which may need to be renamed and replaced with `webpack.config.dev.js` or 
 `webpack.config.unminified.js` as appropriate. 
 
 To run: `./x`
