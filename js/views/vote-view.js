@@ -184,11 +184,6 @@ module.exports = Handlebones.ModelView.extend({
     });
   },
 
-  loginCallback: function(comment) {
-    // sessionStorage.setItem('comment', comment);
-    // document.location.reload();
-  },
-
   emailClicked: function(e) {
     e.preventDefault();
     window.signinCallback = function() {
