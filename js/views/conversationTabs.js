@@ -89,6 +89,7 @@ module.exports = Handlebones.ModelView.extend({
     c.use_background_content_class = display.xs();
     c.hasFacebook = userObject.hasFacebook;
     c.hasTwitter = userObject.hasTwitter;
+    c.hasJoin = userObject.hasJoin;
     c.dropdownLabel = userObject.hname || "Login";
     c.showLogout = userObject.hasTwitter || userObject.hasFacebook || userObject.email;
     c.smallMenu = true; // don't show full name, etc as menu's button, just polis icon and caret

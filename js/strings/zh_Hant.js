@@ -55,4 +55,6 @@ s.showTranslationButton = "啟用外部翻譯";
 s.hideTranslationButton = "停用外部翻譯";
 s.thirdPartyTranslationDisclaimer = "翻譯服務由第三方提供";
 
+s.joinLogin = "與 Join 連結";
+
 module.exports = s;

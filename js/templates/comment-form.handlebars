@@ -162,6 +162,18 @@ fill: white;
           {{> iconFaEMailSquare25}}</i>
         {{s.emailLogin}}</button>
     {{/unless}}
+    {{#unless hasJoin}}
+      <button id="joinButtonCommentForm" class="joinButton" style="padding-top: 0px;">
+        <i class="svgIcon" style="
+            display: inline-block;
+            position: relative;
+            margin-right: 2px;
+            top: 6px;
+            width: 25px;
+            fill: white;
+          ">{{> iconFaJoinSquare25}}</i>
+        {{s.joinLogin}}</button>
+    {{/unless}}
     {{#unless hasFacebook}}
       <button id="facebookButtonCommentForm" class="facebookButton" style="padding-top: 0px;">
         <i class="svgIcon" style="

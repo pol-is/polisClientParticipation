@@ -43,6 +43,7 @@ module.exports = Handlebones.ModelView.extend({
     "click #modSubmit" : "participantModerated",
 
     "click #emailButtonCommentForm" : "emailClicked",
+    "click #joinButtonCommentForm" : "joinClicked",
     "click #facebookButtonVoteView" : "facebookClicked",
     "click #twitterButtonVoteView" : "twitterClicked",
     "click #showTranslationButtonVoteView" : "showTranslationClicked",
@@ -186,10 +187,13 @@ module.exports = Handlebones.ModelView.extend({
 
   emailClicked: function(e) {
     e.preventDefault();
-    window.signinCallback = function() {
-      window.location.reload();
-    };
     window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=500,width=400');
+  },
+
+  joinClicked: function(e) {
+    e.preventDefault();
+    // FIXME: Change to configurable code (don't know how to)
+    window.open('https://join.gov.tw/portal/api/auth/login?redirect_uri=https%3A%2F%2Fait-polis.pdis.nat.gov.tw%2Fsignin-join', 'signin', 'height=800,width=600');
   },
 
   facebookClicked: function(e) {

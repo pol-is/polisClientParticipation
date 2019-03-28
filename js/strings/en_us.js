@@ -123,5 +123,6 @@ s.topic_bad_01_reason = "people from various teams will be voting on the respons
 s.topic_bad_02 = "what are our launch blockers?";
 s.topic_bad_02_reason = "";
 
+s.joinLogin = "Login with Join";
 
 module.exports = s;

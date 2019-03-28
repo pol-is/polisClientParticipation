@@ -44,6 +44,7 @@ module.exports = Handlebones.ModelView.extend({
     ctx.is_active = this.parent.model.get("is_active");
     ctx.shouldAutofocusOnTextarea = this.shouldAutofocusOnTextarea || Utils.shouldFocusOnTextareaWhenWritePaneShown();
     ctx.hasEMail = !!userObject.email;
+    ctx.hasJoin = !!userObject.hasJoin;
     ctx.hasTwitter = userObject.hasTwitter;
     ctx.hasFacebook = userObject.hasFacebook;
     ctx.s = Strings;
@@ -189,6 +190,7 @@ module.exports = Handlebones.ModelView.extend({
     "keyup #comment_form_textarea": "textChange",
     "paste #comment_form_textarea": "textChange",
     "click #emailButtonCommentForm" : "emailClicked",
+    "click #joinButtonCommentForm" : "joinClicked",
     "click #facebookButtonCommentForm" : "facebookClicked",
     "click #twitterButtonCommentForm" : "twitterClicked",
     "click #comment_button": "onSubmitClicked",
@@ -235,7 +237,7 @@ module.exports = Handlebones.ModelView.extend({
       }
     }
     var xid = Utils.getXid();
-    var hasSocial = window.userObject.hasFacebook || window.userObject.hasTwitter || window.userObject.emailVerified || !_.isUndefined(xid);
+    var hasSocial = window.userObject.hasFacebook || window.userObject.hasTwitter || window.userObject.emailVerified || !_.isUndefined(xid) || window.userObject.hasJoin;
     var needsSocial = preload.firstConv.auth_needed_to_write;
     M.add(M.COMMENT_SUBMIT_CLICK);
     if (hasSocial || !needsSocial) {
@@ -254,6 +256,11 @@ module.exports = Handlebones.ModelView.extend({
   emailClicked: function(e) {
     e.preventDefault();
     window.open(SERVICE_URL + '/signin?popup=true', 'signin', 'height=500,width=400');
+  },
+  joinClicked: function(e) {
+    e.preventDefault();
+    // FIXME: Change to configurable code (don't know how to)
+    window.open('https://join.gov.tw/portal/api/auth/login?redirect_uri=https%3A%2F%2Fait-polis.pdis.nat.gov.tw%2Fsignin-join', 'signin', 'height=800,width=600');
   },
   facebookClicked: function(e) {
     e.preventDefault();
