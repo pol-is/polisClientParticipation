@@ -33,6 +33,10 @@ s.pctDisagreed = "{{pct}}% 反對";
 s.pctAgreedOfGroup = "群組 {{group}} 裡，有 {{pct}}% 的人贊成";
 s.pctDisagreedOfGroup = "群組 {{group}} 裡，有 {{pct}}% 的人反對";
 s.commentSent = "意見已送出！";
+s.commentSendFailed = "送出意見時發生錯誤。";
+s.commentSendFailedEmpty = "送出意見時發生錯誤：意見不可為空白。";
+s.commentSendFailedTooLong = "送出意見時發生錯誤：意見過長。";
+s.commentSendFailedDuplicate = "送出意見時發生錯誤：完全相同的意見已存在。";
 s.connectFacebook = "連結 Facebook";
 s.connectTwitter = "連結 Twitter";
 s.connectToPostPrompt = "發表意見前，請先認證電子郵件或連結登入帳號。我們不會貼文在您的牆上。";
@@ -55,6 +59,6 @@ s.showTranslationButton = "啟用外部翻譯";
 s.hideTranslationButton = "停用外部翻譯";
 s.thirdPartyTranslationDisclaimer = "翻譯服務由第三方提供";
 
-s.joinLogin = "與 Join 連結";
+s.joinLogin = "以公共政策網路參與平臺帳號登入";
 
 module.exports = s;
