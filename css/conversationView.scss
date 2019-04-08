@@ -707,9 +707,10 @@ svg {
   background: goldenrod;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 300;
-  padding: 12px 12px 8px 12px;
+  padding: 8px 12px;
   border-radius: 5px;
   font-size: 14px;
+  margin-right: 10px;
 }
 
 .facebookButton, .twitterButton {
@@ -735,7 +736,6 @@ svg {
 }
 
 .facebookButton {
-  margin-right: 10px;
   background-color: #3b5998;
 }
 
