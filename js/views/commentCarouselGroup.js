@@ -97,7 +97,7 @@ module.exports = CommentCarousel.extend({
       if (social) {
         var hasTwitter = social.screen_name;
         var hasFacebook = social.fb_name;
-        var hasJoin = social.join_name;
+        var hasJoin = social.nickname;
         if (hasFacebook) {
           socialCtx = {
             name: social.fb_name,
@@ -115,9 +115,9 @@ module.exports = CommentCarousel.extend({
         }
         if (hasJoin) {
           socialCtx = {
-            name: social.join_name,
-            img: social.join_picture,
-            link: ""
+            name: social.nickname,
+            img: social.picture,
+            link: ''
           };
         }
       }
