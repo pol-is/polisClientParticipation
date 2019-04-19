@@ -48,9 +48,15 @@ function fontawesome() {
 }
 
 function embedJs() {
+  return gulp.src('api/embed.js')
+    .pipe(template({
+      serviceUrl: polisConfig.SERVICE_URL
+    }))
+    .pipe(gulp.dest(dest('/')));
+}
+
+function staticAPI() {
   return gulp.src([
-      'api/embed.js',
-      'api/embed_helper.js',
       'api/twitterAuthReturn.html',
     ])
     .pipe(gulp.dest(dest('/')));
@@ -105,7 +111,7 @@ function templates() {
       outputType: 'node',
       wrapped: true,
     }))
-    .pipe(gulp.dest('js/tmpl'));
+    .pipe(gulp.dest('./js/tmpl'));
 }
 
 function lint() {
@@ -151,9 +157,18 @@ function scriptsVis2() {
     .pipe(gulp.dest(dest('/js')));
 }
 
+function templatedScripts() {
+  return gulp.src('templated-js/**', {base: 'templated-js'})
+    .pipe(template({
+      serviceUrl: polisConfig.SERVICE_URL,
+      joinLoginUrl: polisConfig.JOIN_LOGIN_URL
+    }))
+    .pipe(gulp.dest('./js'));
+}
+
 function scripts() {
   // Single entry point to browserify
-  return gulp.src('js/main.js')
+  return gulp.src('./js/main.js')
     .pipe(browserify({
       insertGlobals: true,
       debug: false,
@@ -290,7 +305,7 @@ function deploy() {
       }
       console.log('Copying files...', gulpSrc);
 
-      gulp.src(gulpSrc, { base: dest('/') })
+      gulp.src(gulpSrc, {base: dest('/')})
         .pipe(gulp.dest(polisConfig.OUTPUT_PATH)).on('error', function (err) {
         console.log('error when copying files', err);
         reject(err);
@@ -340,15 +355,6 @@ function deploy() {
     },
   }));
 
-  promises.push(deployBatch({
-    srcKeep: dest('/embed_helper.js'),
-    headers: {
-      'x-amz-acl': 'public-read',
-      'Content-Type': 'application/javascript',
-      'Cache-Control': 'no-cache'.replace(/MAX_AGE/g, embedJsCacheSeconds),
-    },
-  }));
-
   let twitterAuthReturnCacheSeconds = 60;
   promises.push(deployBatch({
     srcKeep: dest('/twitterAuthReturn.html'),
@@ -384,8 +390,8 @@ function dest(suffix) {
 // End of support functions
 
 module.exports = {
-  default: gulp.series(cleanDist, lint, templates, scriptsVis2, scriptsOther, scripts,
-    css, fontawesome, index, embedJs, deploy),
+  default: gulp.series(cleanDist, lint, templates, scriptsVis2, scriptsOther, templatedScripts, scripts,
+    css, fontawesome, staticAPI, embedJs, index, deploy),
   clean: cleanDist,
-  deploy: deploy
+  deploy: deploy,
 };
