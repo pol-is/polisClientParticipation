@@ -42,8 +42,8 @@ module.exports = Handlebones.ModelView.extend({
     ctx = _.extend(ctx, this, this.model&&this.model.attributes);
     ctx.is_active = this.parent.model.get("is_active");
     ctx.shouldAutofocusOnTextarea = this.shouldAutofocusOnTextarea || Utils.shouldFocusOnTextareaWhenWritePaneShown();
-    ctx.hasEMail = !!userObject.email;
-    ctx.hasJoin = !!userObject.hasJoin;
+    ctx.showEMail = '<%= useEmailLogin %>' === 'true' && !userObject.email;
+    ctx.showJoin = '<%= useJoinLogin %>' === 'true' && !userObject.hasJoin;
     ctx.hasTwitter = userObject.hasTwitter;
     ctx.hasFacebook = userObject.hasFacebook;
     ctx.s = Strings;

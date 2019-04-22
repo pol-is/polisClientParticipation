@@ -41,8 +41,8 @@ module.exports = Handlebones.ModelView.extend({
     "click #importantToggle": "importantToggle",
     "click #modSubmit" : "participantModerated",
 
-    "click #emailButtonCommentForm" : "emailClicked",
-    "click #joinButtonCommentForm" : "joinClicked",
+    "click #emailButtonVoteForm" : "emailClicked",
+    "click #joinButtonVoteForm" : "joinClicked",
     "click #facebookButtonVoteView" : "facebookClicked",
     "click #twitterButtonVoteView" : "twitterClicked",
     "click #showTranslationButtonVoteView" : "showTranslationClicked",

@@ -1,35 +1,16 @@
-
 module.exports = {
 
   domainWhitelist: [
-    "^localhost$",
-    "^192\\.168\\.1\\.140$",
-    "^pol\\.is",
-    ".+\\.pol\\.is$",
-    "^xip\\.io$",
-    ".+\\.xip\\.io$",
+    '^localhost$',
+    '^10\\.0\\.0\\.2$',
+    '^223\\.200\\.166\\.24$',
+    '^ait-polis\\.pdis\\.nat\\.gov\\.tw$'
   ],
 
-  // Point to a polisServer instance (local recommended for dev)
-  //SERVICE_URL: "http://localhost:5000", // local server; recommended for dev
-  SERVICE_URL: "https://preprod.pol.is",
-
-  // Note that this must match the participation client port specified in polisServer instance
-  PORT: 5001,
-
-  DISABLE_INTERCOM: true,
-
-  // must register with facebook and get a facebook app id to use the facebook auth features
-  FB_APP_ID: '661042417336977',
-
-  // For data exports
-
-  S3_BUCKET_PROD: 'pol.is',
-  S3_BUCKET_PREPROD: 'preprod.pol.is',
-
-  SCP_SUBDIR_PREPROD: 'preprod',
-  SCP_SUBDIR_PROD: 'prod',
-
-  UPLOADER: 'scp',
-  // UPLOADER: 's3',
+  FB_APP_ID: '352411522215675',
+  SERVICE_URL: 'https://ait-polis.pdis.nat.gov.tw/',
+  JOIN_LOGIN_URL: 'https://join.gov.tw/portal/api/auth/login?redirect_uri=https%3A%2F%2Fait-polis.pdis.nat.gov.tw%2Fsignin-join',
+  OUTPUT_PATH: '/path/to/polisFileServer/prod/',
+  USE_EMAIL_LOGIN: false,
+  USE_JOIN_LOGIN: true,
 };

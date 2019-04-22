@@ -12,21 +12,21 @@
     margin: 10px;
     ">
   <div class="protip"><p><i class="fa fa-microphone"></i>&nbsp; {{s.connectToVotePrompt}}</p></div>
-<!--  {{#unless hasEMail}}-->
-<!--    <button id="emailButtonCommentForm" class="emailButton" style="padding-top: 0px;">-->
-<!--      <i class="svgIcon" style="-->
-<!--display: inline-block;-->
-<!--position: relative;-->
-<!--margin-right: 2px;-->
-<!--top: 6px;-->
-<!--width: 25px;-->
-<!--fill: white;-->
-<!--">-->
-<!--        {{> iconFaEMailSquare25}}</i>-->
-<!--      {{s.emailLogin}}</button>-->
-<!--  {{/unless}}-->
-  {{#unless hasJoin}}
-    <button id="joinButtonCommentForm" class="joinButton" style="padding-top: 0px;">
+  {{#if showEMail}}
+    <button id="emailButtonVoteForm" class="emailButton" style="padding-top: 0px;">
+      <i class="svgIcon" style="
+        display: inline-block;
+        position: relative;
+        margin-right: 2px;
+        top: 6px;
+        width: 25px;
+        fill: white;
+        ">
+        {{> iconFaEMailSquare25}}</i>
+      {{s.emailLogin}}</button>
+  {{/if}}
+  {{#if showJoin}}
+    <button id="joinButtonVoteForm" class="joinButton" style="padding-top: 0px;">
       <i class="svgIcon" style="
 display: inline-block;
 position: relative;
@@ -37,7 +37,7 @@ fill: white;
 ">
         {{> iconFaJoinSquare25}}</i>
       {{s.joinLogin}}</button>
-  {{/unless}}
+  {{/if}}
   {{#unless hasFacebook}}
     <button id="facebookButtonVoteView" class="facebookButton" style="padding-top: 0px; margin-bottom: 4px;">
       <i class="svgIcon" style="
