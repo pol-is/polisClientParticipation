@@ -162,7 +162,7 @@ function templatedScripts() {
     .pipe(template({
       serviceUrl: polisConfig.SERVICE_URL,
       useEmailLogin: polisConfig.USE_EMAIL_LOGIN,
-      userJoinLogin: polisConfig.USE_JOIN_LOGIN,
+      useJoinLogin: polisConfig.USE_JOIN_LOGIN,
       joinLoginUrl: polisConfig.JOIN_LOGIN_URL
     }))
     .pipe(gulp.dest('./js'));
