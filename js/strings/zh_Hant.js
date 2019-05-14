@@ -94,9 +94,9 @@ s.showTranslationButton = "啟用外部翻譯";
 s.hideTranslationButton = "停用外部翻譯";
 s.thirdPartyTranslationDisclaimer = "翻譯服務由第三方提供";
 
-s.notificationsAlreadySubscribed = "You are subscribed to updates for this conversation.";
-s.notificationsGetNotified = "Get notified when more statements arrive:";
-s.notificationsEnterEmail = "Enter your email address to get notified when more statements arrive:";
+s.notificationsAlreadySubscribed = "您已訂閱本對話。";
+s.notificationsGetNotified = "當有人發表新意見時，您可以收到通知：";
+s.notificationsEnterEmail = "輸入您的電子郵件信箱以取得新意見通知：";
 s.labelEmail = "電子郵件";
 s.notificationsSubscribeButton = "訂閱更新";
 s.noCommentsYet = "目前還沒有意見。";
