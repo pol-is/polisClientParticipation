@@ -1,7 +1,3 @@
-/*
- * gulpfile with gulp 4 for local deployment. Omit uploads and tests.
- */
-
 const gulp = require('gulp');
 const _ = require('underscore');
 const rimraf = require('rimraf');
@@ -25,7 +21,7 @@ const distRoot = 'dist';
 
 // Configurable letiables
 let isUglify = true;
-let versionString = 'VERSION_ERROR';
+let versionString;
 
 // Tasks
 
@@ -64,6 +60,8 @@ function staticAPI() {
 
 function index() {
   const domainWhitelist = '["' + polisConfig.domainWhitelist.join('","') + '"]';
+  let d = new Date();
+  versionString = [d.getFullYear(), d.getMonth() + 1, d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()].join("_");
   return gulp.src('index.html')
     .pipe(template({
       basepath: '', // Was a cache with timestamp id, but can't find an advantage to use it for local server version
