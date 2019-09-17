@@ -1383,23 +1383,25 @@ module.exports = function(params) {
             gidToBigBucketId[b.gid] = b.bid;
           });
           votesForTidBid = {};
-          _.each(groupVotes[0].votes, function(o, tid) {
-            var A = {};
-            var D = {};
-            var S = {};
-            _.each(clusters, function(cluster) {
-              var gid = cluster.id;
-              var bigBucketBid = gidToBigBucketId[gid];
-              A[bigBucketBid] = groupVotes[gid]["votes"][tid].A;
-              D[bigBucketBid] = groupVotes[gid]["votes"][tid].D;
-              S[bigBucketBid] = groupVotes[gid]["votes"][tid].S;
+          if (groupVotes[0]) {
+            _.each(groupVotes[0].votes, function (o, tid) {
+              var A = {};
+              var D = {};
+              var S = {};
+              _.each(clusters, function (cluster) {
+                var gid = cluster.id;
+                var bigBucketBid = gidToBigBucketId[gid];
+                A[bigBucketBid] = groupVotes[gid]["votes"][tid].A;
+                D[bigBucketBid] = groupVotes[gid]["votes"][tid].D;
+                S[bigBucketBid] = groupVotes[gid]["votes"][tid].S;
+              });
+              votesForTidBid[tid] = {
+                A: A,
+                D: D,
+                S: S,
+              };
             });
-            votesForTidBid[tid] = {
-              A: A,
-              D: D,
-              S: S,
-            };
-          });
+          }
 
           votesForTidBidPromise.resolve(); // NOTE this may already be resolved.
 
