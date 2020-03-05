@@ -189,7 +189,7 @@ gulp.task('connect', [], function() {
 
 
   app.listen(polisConfig.PORT);
-  console.log('listening on localhost:' + polisConfig.PORT);
+  console.log('Listening at http://localhost:' + polisConfig.PORT);
 });
 
 function getGitHash() {
