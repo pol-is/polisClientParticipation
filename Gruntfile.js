@@ -3,8 +3,8 @@
 module.exports = function(grunt) {
   grunt.option('stack', true);
 
-  var port = process.env.PORT || 8000,
-      hostname = 'localhost',
+  var port = process.env.STATIC_FILES_PORT || 8000,
+      hostname = process.env.STATIC_FILES_HOST || 'localhost',
       templates = {},
       paths = {
         'public': 'public',

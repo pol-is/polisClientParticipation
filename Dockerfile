@@ -13,8 +13,10 @@ COPY . .
 
 EXPOSE ${port}
 
-#CMD npm start
+# CMD npm start
 
-CMD [ "node", "gulpfile.js", "default" ]
+#CMD [ "node", "gulpfile.js", "default" ]
+
+CMD [ "node" "./node_modules/.bin/grunt" ]
 
 
