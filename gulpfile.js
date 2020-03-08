@@ -186,15 +186,8 @@ gulp.task('connect', [], function() {
   app.use(/^\/billions$/, express.static(path.join(destRootBase, "billions.html")));
   app.use(/^\/wimp$/, express.static(path.join(destRootBase, "wimp.html")));
   app.use(/^\/try$/, express.static(path.join(destRootBase, "try.html")));
-
-  app.listen(polisConfig.CLIENT_PORT, polisConfig.CLIENT_HOST, function(err) {
-  if (err) {
-    console.log("error", err);
-    return;
-  }
-
+  app.listen(polisConfig.CLIENT_PORT, polisConfig.CLIENT_HOST);
   console.log('Listening at http://'+polisConfig.CLIENT_HOST+':'+polisConfig.CLIENT_PORT);
-
 });
 
 function getGitHash() {
