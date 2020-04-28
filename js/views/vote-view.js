@@ -1,7 +1,9 @@
 // Copyright (C) 2012-present, Polis Technology Inc. This program is free software: you can redistribute it and/or  modify it under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// FIXME: Should read SERVICE_URL from polis.config, don't know how to do it in webpack
-var SERVICE_URL = '<%= serviceUrl %>';
+var SERVICE_URL = 'https://polis.pdis.nat.gov.tw/';
+if (SERVICE_URL.slice(-1) === '/') {
+  SERVICE_URL = SERVICE_URL.slice(0, -1);
+}
 
 var eb = require("../eventBus");
 var Handlebones = require("handlebones");
@@ -42,8 +44,8 @@ module.exports = Handlebones.ModelView.extend({
     "click #importantToggle": "importantToggle",
     "click #modSubmit" : "participantModerated",
 
-    "click #emailButtonCommentForm" : "emailClicked",
-    "click #joinButtonCommentForm" : "joinClicked",
+    "click #emailButtonVoteForm" : "emailClicked",
+    "click #joinButtonVoteForm" : "joinClicked",
     "click #facebookButtonVoteView" : "facebookClicked",
     "click #twitterButtonVoteView" : "twitterClicked",
     "click #showTranslationButtonVoteView" : "showTranslationClicked",
@@ -83,6 +85,8 @@ module.exports = Handlebones.ModelView.extend({
       var hasFacebook = social.fb_name;
       var hasJoin = social.nickname;
       var hasX = social.x_name;
+      ctx.showJoin = 'true' === 'true';
+      ctx.showEMail = 'false' === 'true';
       if (hasFacebook) {
         socialCtx = {
           name: social.fb_name,
@@ -200,7 +204,7 @@ module.exports = Handlebones.ModelView.extend({
 
   joinClicked: function(e) {
     e.preventDefault();
-    window.open('<%= joinLoginUrl %>', 'signin', 'height=800,width=600');
+    window.open('https://join.gov.tw/portal/api/auth/login?redirect_uri=https%3A%2F%2Fpolis.pdis.nat.gov.tw%2Fsignin-join', 'signin', 'height=800,width=600');
   },
 
   facebookClicked: function(e) {
