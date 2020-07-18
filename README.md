@@ -1,3 +1,11 @@
+
+## NOTE: This separate project has been archived in favor of the monorepo setup at https://github.com/pol-is/polis.
+
+<br/>
+
+
+
+
 Polis Client/Participation View
 ===============================
 
